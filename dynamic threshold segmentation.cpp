@@ -2,9 +2,10 @@
 #include <opencv.hpp>
 #include "c:\opencv\build\include\opencv2\imgproc\types_c.h"
 #include "c:\opencv\build\include\opencv2\imgcodecs\imgcodecs_c.h" 
-#define DIR "C:\\Users\\Tong\\Desktop\\test\\123.jpg"
+#define DIR "C:\\Users\\Tong\\Desktop\\test\\3333.jpg"
 using namespace cv;
 using namespace std;
+
 void CreateTree(Mat &src, Rect roi);
 double AveGray(const Mat src, Rect roi);
 int main()
@@ -19,16 +20,10 @@ int main()
 
 void CreateTree(Mat &src, Rect roi)
 {
-	if (AveGray(src,roi)<130&&roi.width*roi.height>5000)
+	if (AveGray(src,roi)<130&&roi.width*roi.height>1000)
 	{
 		int x = roi.x, y = roi.y;
 		int width = roi.width / 2, height = roi.height / 2;
-		/*
-		if (x + roi.x > src.rows)
-			width = src.rows - (x + width);
-		if (y + roi.y > src.cols)
-			height = src.cols - (y + height);
-		*/
 		Rect LU = Rect(x, y, width,height);
 		Rect RU = Rect(x+width, y, width, height); 
 		Rect LD = Rect(x, y+height, width, height); 
@@ -43,7 +38,6 @@ void CreateTree(Mat &src, Rect roi)
 		CreateTree(src, RU);//RU
 		CreateTree(src, LD);//LD
 		CreateTree(src, RD);//RD
-		
 	}
 	else
 	{
