@@ -1,4 +1,6 @@
-
+/*
+高斯混合背景建模
+*/
 #include "opencv.hpp"
 using namespace std;
 using namespace cv;
